@@ -77,11 +77,11 @@ async def diagnose(req: DiagnoseRequest):
     print(f"[pipeline] Uploaded image: {req.image_url}")
     print(f"{'='*60}")
 
-    healthy_urls = get_healthy_image_urls(crop)
+    healthy_urls,msg = get_healthy_image_urls(crop)
     if not healthy_urls:
         raise HTTPException(
             status_code=404,
-            detail=f"No healthy reference images found for crop '{crop}' on Cloudinary.",
+            detail=msg,
         )
     print(f"[pipeline] Found {len(healthy_urls)} healthy reference image(s)")
 

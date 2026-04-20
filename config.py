@@ -27,7 +27,8 @@ class Settings:
     PORT: int = int(os.getenv("PORT", "8000"))
 
     # Crop verification
-    CLIP_SIMILARITY_THRESHOLD: float = 0.75
+    CLIP_SIMILARITY_THRESHOLD: float = 0.50
+
 
     # Supported crops (folder names on Cloudinary)
     SUPPORTED_CROPS: list[str] = [

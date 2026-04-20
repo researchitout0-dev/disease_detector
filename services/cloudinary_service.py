@@ -40,7 +40,8 @@ def get_healthy_image_urls(crop_name: str, max_images: int = 5) -> list[str]:
         urls = [r["secure_url"] for r in result.get("resources", [])]
         return urls
     except cloudinary.exceptions.NotFound:
-        return []
+        msg='image not found'
+        return [],msg
     except Exception as e:
-        print(f"[cloudinary_service] Error fetching images for '{crop_name}': {e}")
-        return []
+        msg=f"[cloudinary_service] Error fetching images for '{crop_name}': {e}"
+        return [],msg

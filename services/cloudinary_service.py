@@ -38,7 +38,7 @@ def get_healthy_image_urls(crop_name: str, max_images: int = 5) -> list[str]:
             resource_type="image",
         )
         urls = [r["secure_url"] for r in result.get("resources", [])]
-        return urls
+        return urls,''
     except cloudinary.exceptions.NotFound:
         msg='image not found'
         return [],msg

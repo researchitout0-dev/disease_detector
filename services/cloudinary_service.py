@@ -31,11 +31,9 @@ def get_healthy_image_urls(crop_name: str, max_images: int = 5) -> list[str]:
     folder = crop_name.lower().strip()
 
     try:
-        result = cloudinary.api.resources(
-            type="upload",
-            prefix=f"{folder}/",
+        result = cloudinary.api.resources_by_asset_folder(
+            asset_folder=folder, # 'tomato' or 'rice'
             max_results=max_images,
-            resource_type="image",
         )
         urls = [r["secure_url"] for r in result.get("resources", [])]
         return urls,''
